@@ -21,13 +21,13 @@ jobs:
       - name: Build for macOS
         run: |
           cd cmd/gui
-          go build -o mygame-macos
+          go build -o scorchpoint-macos
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: mygame-macos
-          path: cmd/gui/mygame-macos
+          name: scorchpoint-macos
+          path: cmd/gui/scorchpoint-macos
 
   build-windows:
     name: Build for Windows
@@ -43,10 +43,10 @@ jobs:
       - name: Build for Windows
         run: |
           cd cmd/gui
-          go build -o mygame-windows.exe
+          go build -o scorchpoint-windows.exe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: mygame-windows
-          path: cmd/gui/mygame-windows.exe
+          name: scorchpoint-windows
+          path: cmd/gui/scorchpoint-windows.exe
