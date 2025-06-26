@@ -1,0 +1,52 @@
+name: Build Game Clients
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-mac:
+    name: Build for macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24'
+
+      - name: Build for macOS
+        run: |
+          cd cmd/gui
+          go build -o mygame-macos
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: mygame-macos
+          path: cmd/gui/mygame-macos
+
+  build-windows:
+    name: Build for Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24'
+
+      - name: Build for Windows
+        run: |
+          cd cmd/gui
+          go build -o mygame-windows.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: mygame-windows
+          path: cmd/gui/mygame-windows.exe
